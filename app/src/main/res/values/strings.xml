@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Golden Compass</string>
+    <string name="choose_location">Choose location</string>
+    <string name="update">Update</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="latitude_value">Latitude: %1$f</string>
+    <string name="longitude_value">Longitude: %1$f</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="save">Save</string>
+</resources>
