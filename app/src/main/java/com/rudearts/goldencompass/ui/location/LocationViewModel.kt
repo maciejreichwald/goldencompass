@@ -4,7 +4,6 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.google.android.gms.maps.model.LatLng
 import com.rudearts.goldencopmass.domain.model.BaseLocation
-import com.rudearts.goldencopmass.domain.model.BaseViewLocation
 import com.rudearts.goldencopmass.domain.usecase.LastKnownLocationUseCase
 import com.rudearts.goldencopmass.domain.usecase.RefreshDestinationUseCase
 import com.rudearts.goldencopmass.domain.usecase.SaveDestinationUseCase
