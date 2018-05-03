@@ -3,7 +3,7 @@ package com.rudearts.goldencompass.data.util
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorManager
-import com.rudearts.goldencompass.data.sensor.SensorCache
+import com.rudearts.goldencompass.data.sensor.SensorStorage
 import javax.inject.Inject
 
 /**
@@ -21,7 +21,7 @@ class SensorCalculator @Inject constructor() {
         const val DEFAULT_VALUE = 0f
     }
 
-    fun calculateNorthAngle(event:SensorEvent?, cache: SensorCache):Float {
+    fun calculateNorthAngle(event:SensorEvent?, cache: SensorStorage):Float {
         if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
             cache.gravity = normalizeNoise(cache.gravity, event.values)
         }
@@ -30,7 +30,7 @@ class SensorCalculator @Inject constructor() {
             cache.geomagnetic = normalizeNoise(cache.geomagnetic, event.values)
         }
 
-        val valuesR = FloatArray(SensorCache.MATRIX_SIZE)
+        val valuesR = FloatArray(SensorStorage.MATRIX_SIZE)
 
         val success = SensorManager.getRotationMatrix(valuesR, null, cache.gravity, cache.geomagnetic)
         if (!success)  return DEFAULT_VALUE
@@ -38,7 +38,7 @@ class SensorCalculator @Inject constructor() {
         SensorManager.remapCoordinateSystem(valuesR, SensorManager.AXIS_X, SensorManager.AXIS_Z, valuesR)
         SensorManager.remapCoordinateSystem(valuesR, SensorManager.AXIS_X, SensorManager.AXIS_Y, valuesR)
 
-        val orientation = SensorManager.getOrientation(valuesR, FloatArray(SensorCache.EVENT_VALUES_ARRAY_LENGTH))
+        val orientation = SensorManager.getOrientation(valuesR, FloatArray(SensorStorage.EVENT_VALUES_ARRAY_LENGTH))
         val azimuth = orientation[FIRST_PARAM_INDEX]
         val angle = Math.toDegrees(azimuth.toDouble()).toFloat()
         return (angle + 360f) % 360

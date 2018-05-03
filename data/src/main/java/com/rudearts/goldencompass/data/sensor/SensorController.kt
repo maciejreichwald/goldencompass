@@ -14,7 +14,7 @@ import javax.inject.Inject
 class SensorController @Inject constructor(
         private val manager: SensorManager?,
         private val calculator:SensorCalculator,
-        private val cache:SensorCache) : SensorControllable {
+        private val cache:SensorStorage) : SensorControllable {
 
     internal val accelerometerSensor = manager?.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
     internal val magneticSensor = manager?.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)

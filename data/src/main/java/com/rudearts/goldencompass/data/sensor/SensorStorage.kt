@@ -1,6 +1,6 @@
 package com.rudearts.goldencompass.data.sensor
 
-class SensorCache {
+class SensorStorage {
 
     companion object {
         const val EVENT_VALUES_ARRAY_LENGTH = 3

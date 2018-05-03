@@ -5,7 +5,7 @@ import android.hardware.SensorManager
 import android.location.LocationManager
 import com.rudearts.goldencompass.data.location.LocationController
 import com.rudearts.goldencompass.data.location.LocationStorage
-import com.rudearts.goldencompass.data.sensor.SensorCache
+import com.rudearts.goldencompass.data.sensor.SensorStorage
 import com.rudearts.goldencompass.data.sensor.SensorController
 import com.rudearts.goldencompass.data.util.BaseLocationMapper
 import com.rudearts.goldencompass.data.util.SensorCalculator
@@ -37,12 +37,12 @@ class LocationModule {
     fun providesSensorManager(context: Context) = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager?
 
     @Provides
-    fun providesSensorCache() = SensorCache()
+    fun providesSensorCache() = SensorStorage()
 
     @Singleton
     @Provides
     fun providesSensorControllable(
             sensorManager: SensorManager?,
             calculator: SensorCalculator,
-            cache:SensorCache) = SensorController(sensorManager, calculator, cache) as SensorControllable
+            cache:SensorStorage) = SensorController(sensorManager, calculator, cache) as SensorControllable
 }
