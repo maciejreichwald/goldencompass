@@ -11,7 +11,7 @@ import javax.inject.Inject
  * On the other hand, if I divide the calculations between domain and data layers, it will be unreadable.
  * It's the lesser evil here.
  * Actually, if application gets bigger, I tend to move all device-specific parts to "industrial" level,
- * which handles such hybrids of data with "logic" layers.
+ * which handles such undividable hybrids of data with "logic" layers, mostly provided by Google itself.
  */
 class SensorCalculator @Inject constructor() {
 

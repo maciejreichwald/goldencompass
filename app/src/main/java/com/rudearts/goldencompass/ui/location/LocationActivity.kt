@@ -92,9 +92,11 @@ class LocationActivity : ToolbarActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap?) {
         map = googleMap
-        map?.uiSettings?.isMapToolbarEnabled = false
-        map?.uiSettings?.isZoomControlsEnabled = false
-        map?.setOnMapClickListener { latLng -> onMapClicked(latLng) }
+        map?.let {
+            it.uiSettings?.isMapToolbarEnabled = false
+            it.uiSettings?.isZoomControlsEnabled = false
+            it.setOnMapClickListener { latLng -> onMapClicked(latLng) }
+        }
     }
 
     private fun onMapClicked(latLng: LatLng?) {
@@ -105,10 +107,12 @@ class LocationActivity : ToolbarActivity(), OnMapReadyCallback {
     }
 
     private fun updateMapMarker(latLng: LatLng) {
-        map?.clear()
-        map?.addMarker(MarkerOptions().apply {
-            position(latLng)
-        })
+        map?.let {
+            it.clear()
+            it.addMarker(MarkerOptions().apply {
+                position(latLng)
+            })
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

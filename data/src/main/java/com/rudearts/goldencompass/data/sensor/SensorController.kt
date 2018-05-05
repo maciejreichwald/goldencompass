@@ -26,8 +26,10 @@ class SensorController @Inject constructor(
 
         listener = createSensorListener(subscriber)
 
-        manager?.registerListener(listener, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME)
-        manager?.registerListener(listener, magneticSensor, SensorManager.SENSOR_DELAY_GAME)
+        manager?.let {
+            it.registerListener(listener, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME)
+            it.registerListener(listener, magneticSensor, SensorManager.SENSOR_DELAY_GAME)
+        }
     }
 
     private fun createSensorListener(subscriber: ObservableEmitter<Float>) = object: BaseSensorEventListener() {
@@ -38,8 +40,8 @@ class SensorController @Inject constructor(
     }
 
     override fun stopUpdates() {
-        listener?.let {
-            manager?.unregisterListener(it)
+        listener?.let { listener ->
+            manager?.unregisterListener(listener)
         }
     }
 }

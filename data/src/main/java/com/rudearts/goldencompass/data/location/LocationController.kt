@@ -27,8 +27,10 @@ class LocationController @Inject constructor(
         locationListener = createLocationListener(subscriber)
 
         try {
-            locationManager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
-            locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, locationListener)
+            locationManager?.let {
+                it.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
+                it.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, locationListener)
+            }
         } catch (e:Exception) {
             e.printStackTrace()
         }
@@ -46,8 +48,8 @@ class LocationController @Inject constructor(
 
     @SuppressLint("MissingPermission")
     override fun stopLocationUpdates() {
-        locationListener?.let {
-            locationManager?.removeUpdates(it)
+        locationListener?.let { listener ->
+            locationManager?.removeUpdates(listener)
         }
     }
 
