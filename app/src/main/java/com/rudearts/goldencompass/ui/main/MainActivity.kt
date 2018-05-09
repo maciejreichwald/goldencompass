@@ -57,12 +57,12 @@ open class MainActivity : ToolbarActivity() {
         changeLocationViews(false)
     }
 
-    private fun setupBtns() {
+    internal fun setupBtns() {
         btnLocation.setOnClickListener { onLocationClick() }
         btnUpdate.setOnClickListener { openLocationView() }
     }
 
-    private fun onLocationClick() {
+    internal fun onLocationClick() {
         if (checkAndRequestPermissionIfNeeded(LOCATION_CLICK_PERMISSION_REQUEST_CODE)) {
             return
         }
@@ -70,7 +70,7 @@ open class MainActivity : ToolbarActivity() {
         viewModel.onLocationClick()
     }
 
-    private fun checkAndRequestPermissionIfNeeded(requestCode:Int): Boolean {
+    internal fun checkAndRequestPermissionIfNeeded(requestCode:Int): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), requestCode)
@@ -80,7 +80,7 @@ open class MainActivity : ToolbarActivity() {
         return false
     }
 
-    private fun openLocationView() {
+    internal fun openLocationView() {
         if (checkAndRequestPermissionIfNeeded(LOCATION_VIEW_PERMISSION_REQUEST_CODE)) {
             return
         }
@@ -90,14 +90,14 @@ open class MainActivity : ToolbarActivity() {
         }
     }
 
-    private fun changeLocationViews(locationState:Boolean) {
+    internal fun changeLocationViews(locationState:Boolean) {
         lblLocation.setText(getTextByLocationState(locationState))
         imgArrow.visible = locationState
         lblLatitude.visibleOrNot = locationState
         lblLongitude.visibleOrNot = locationState
     }
 
-    private fun getTextByLocationState(locationState: Boolean) = when(locationState) {
+    internal fun getTextByLocationState(locationState: Boolean) = when(locationState) {
         true -> R.string.stop
         else -> R.string.start
     }
@@ -113,7 +113,7 @@ open class MainActivity : ToolbarActivity() {
         refreshDestination()
     }
 
-    private fun refreshDestination() {
+    internal fun refreshDestination() {
         if (checkAndRequestPermissionIfNeeded(DESTINATION_PERMISSION_REQUEST_CODE)) {
             return
         }
@@ -121,30 +121,30 @@ open class MainActivity : ToolbarActivity() {
         viewModel.refreshDestination()
     }
 
-    private fun onDestinationChanged(destination: BaseLocation?) {
+    internal fun onDestinationChanged(destination: BaseLocation?) {
         when (destination) {
             null -> refreshDestinationCoordinates(BaseLocation(0.0,0.0))
             else -> refreshDestinationCoordinates(destination)
         }
     }
 
-    private fun refreshDestinationCoordinates(destination:BaseLocation) {
+    internal fun refreshDestinationCoordinates(destination:BaseLocation) {
         lblLatitude.text = resources.getString(R.string.latitude_value, destination.latitude)
         lblLongitude.text = resources.getString(R.string.longitude_value, destination.longitude)
     }
 
-    private fun onLocationStateChanged(state: Boolean?) = when(state) {
+    internal fun onLocationStateChanged(state: Boolean?) = when(state) {
         null -> changeLocationViews(false)
         else -> changeLocationViews(state)
     }
 
-    private fun onDestinationAngleChange(angle: Float?) {
+    internal fun onDestinationAngleChange(angle: Float?) {
         angle?.let {
             imgArrow.rotation = angle
         }
     }
 
-    private fun onNorthAngleChange(angle: Float?) {
+    internal fun onNorthAngleChange(angle: Float?) {
         angle?.let {
             imgCompass.rotation = angle
         }
@@ -178,7 +178,7 @@ open class MainActivity : ToolbarActivity() {
         handleLocationRequests(requestCode, resultCode)
     }
 
-    private fun handleLocationRequests(requestCode: Int, resultCode: Int) {
+    internal fun handleLocationRequests(requestCode: Int, resultCode: Int) {
         if (resultCode != Activity.RESULT_OK) return
 
         when(requestCode) {
@@ -192,7 +192,7 @@ open class MainActivity : ToolbarActivity() {
         handleLocationPermissions(requestCode, grantResults)
     }
 
-    private fun handleLocationPermissions(requestCode: Int, grantResults: IntArray) {
+    internal fun handleLocationPermissions(requestCode: Int, grantResults: IntArray) {
         if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) return
 
         when(requestCode) {
@@ -202,7 +202,7 @@ open class MainActivity : ToolbarActivity() {
         }
     }
 
-    private fun onLocationClickAfterPermission() {
+    internal fun onLocationClickAfterPermission() {
         viewModel.refreshDestination()
         onLocationClick()
     }

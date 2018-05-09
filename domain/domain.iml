@@ -6,6 +6,12 @@
         <option name="GRADLE_PROJECT_PATH" value=":domain" />
       </configuration>
     </facet>
+    <facet type="java-gradle" name="Java-Gradle">
+      <configuration>
+        <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/build" />
+        <option name="BUILDABLE" value="true" />
+      </configuration>
+    </facet>
     <facet type="kotlin-language" name="Kotlin">
       <configuration version="3" platform="JVM 1.6" useProjectSettings="false">
         <compilerSettings />
@@ -27,12 +33,6 @@
         </compilerArguments>
       </configuration>
     </facet>
-    <facet type="java-gradle" name="Java-Gradle">
-      <configuration>
-        <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/build" />
-        <option name="BUILDABLE" value="true" />
-      </configuration>
-    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/build/classes/java/main" />
@@ -48,7 +48,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Gradle: rxkotlin-2.2.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: kotlin-stdlib-1.2.41" level="project" />
@@ -56,14 +56,5 @@
     <orderEntry type="library" exported="" name="Gradle: annotations-13.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: rxjava-2.1.6" level="project" />
     <orderEntry type="library" exported="" name="Gradle: reactive-streams-1.0.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: mockito-kotlin-1.5.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: kotlin-reflect-1.0.7" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: junit-4.12" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: assertj-core-3.9.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: hamcrest-core-1.3" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: mockito-core-2.8.9" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: byte-buddy-1.6.14" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: byte-buddy-agent-1.6.14" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: objenesis-2.5" level="project" />
   </component>
 </module>
